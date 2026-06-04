@@ -1,20 +1,5 @@
 --database and schema initil part2
 
-do $$
-begin
-    if exists (select 1 from information_schema.schemata where schema_name = 'elearning') then
-        revoke all privileges on all tables in schema elearning from elearning_readonly;
-        revoke all privileges on all tables in schema elearning from elearning_writer;
-        revoke all privileges on schema elearning from elearning_readonly;
-        revoke all privileges on schema elearning from elearning_writer;
-    end if;
-end $$;
-
-drop schema if exists elearning cascade;
-
-drop role if exists elearning_readonly;
-drop role if exists elearning_writer;
-
 create role elearning_readonly;
 create role elearning_writer;
 
